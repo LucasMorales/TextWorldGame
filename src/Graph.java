@@ -29,7 +29,7 @@ public class Graph {
 
     public Node getNode(String name) {
         for (int i = 0; i < nodes.size(); i++) {
-            if (nodes.get(i).getName() == name) return nodes.get(i);
+            if (nodes.get(i).getName().equals(name)) return nodes.get(i);
         }
         return null;
     }
@@ -66,11 +66,16 @@ public class Graph {
                 System.out.println("no neighbor of this name: " + name);
                 return null;
             }
+            if (indexOfN == -1) return null;
             return neighbors.get(indexOfN);
         }
 
         public String getName() {
             return name;
+        }
+
+        public boolean hasNeighbor(String roomReq) {
+            return (getNeighbor(roomReq) != null);
         }
     }
 
