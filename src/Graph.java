@@ -1,16 +1,17 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Graph {
-    private List<Node> nodes;
+    private HashMap<String, Node> nodes;
 
     public Graph() {
-        nodes = new ArrayList<Node>();
+        nodes = new HashMap<>();
     }
 
     public void addNode(String name) {
-        nodes.add(new Node(name));
+        nodes.put(name, new Node(name));
     }
 
     public void addDirectedEdge(String node1, String node2) {
@@ -28,46 +29,34 @@ public class Graph {
     }
 
     public Node getNode(String name) {
-        for (int i = 0; i < nodes.size(); i++) {
-            if (nodes.get(i).getName().equals(name)) return nodes.get(i);
-        }
-        return null;
+        return nodes.get(name); // HashMap automatically returns null if it does not exist
     }
 
 
     public class Node {
         private String name;
-        private ArrayList<Node> neighbors;
+        private HashMap<String, Node> neighbors;
 
         private Node(String name) {
-            neighbors = new ArrayList<Node>();
+            neighbors = new HashMap<String, Node>();
             this.name = name;
         }
 
         private void addNeighbor(Node n) {
-            neighbors.add(n);
+            neighbors.put(name, n);
         }
 
         public String getNeighborNames() {
-            String names = "";
-            for (Node n : neighbors) {
-                names += n.getName();
-                names += "\t";
+            String output = "";
+            for (String name : neighbors.keySet()) {
+                output += neighbors.get(name).getName();
+                output += "\t";
             }
-            return names;
+            return output;
         }
 
         public Node getNeighbor(String name) {
-            int indexOfN = -1;
-            for (int i = 0; i < neighbors.size(); i++) {
-                if (neighbors.get(i).getName().equals(name)) indexOfN = i;
-            }
-            if (indexOfN == -1) {
-                System.out.println("no neighbor of this name: " + name);
-                return null;
-            }
-            if (indexOfN == -1) return null;
-            return neighbors.get(indexOfN);
+            return neighbors.get(name);
         }
 
         public String getName() {
