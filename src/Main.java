@@ -39,7 +39,7 @@ public class Main {
             } else if (userResponse.indexOf("add room") == 0) {
                 String newRoomReq = userResponse.substring(9);
                 g.addNode(newRoomReq);
-                g.addDirectedEdge(current.getName(), newRoomReq);
+                g.addUndirectedEdge(current.getName(), newRoomReq);
                 System.out.println(newRoomReq + " has been added as a room.\n");
 
             } else {
