@@ -3,19 +3,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Node root = new Node("hall");
+        Graph g = new Graph();
+        g.addNode("hall");
+        g.addNode("closet");
+        g.addNode("dungeon");
 
-        root.addNeighbor(new Node("closet"));
-        root.addNeighbor(new Node("bedroom"));
+        g.addDirectedEdge("hall", "dungeon");
+        g.addUndirectedEdge("hall", "closet");
 
-        root.getNeighbor("closet").addNeighbor(root);
 
-        root.getNeighbor("bedroom").addNeighbor(new Node("bathroom"));
-        root.getNeighbor("bedroom").getNeighbor("bathroom").addNeighbor(new Node("shower"));
-        root.getNeighbor("bedroom").getNeighbor("bathroom").addNeighbor(new Node("secret dungeon"));
-        root.getNeighbor("bedroom").getNeighbor("bathroom").getNeighbor("secret dungeon").addNeighbor(root);
 
         // game loop code
+/*
 
         Node currentRoom = root;
         String userResponse = "";
@@ -24,7 +23,7 @@ public class Main {
         do {
             System.out.println("You are in the " + currentRoom.getName());
             System.out.println("You can go to the: " + currentRoom.getNeighborNames());
-            System.out.print("Choose a room to enter and type its name: ");
+            System.out.println("Choose a room to enter and type its name: ");
             userResponse = in.nextLine();
 
             Node nextRoom = currentRoom.getNeighbor(userResponse);
@@ -35,6 +34,7 @@ public class Main {
             }
 
         } while (!userResponse.equals("quit"));
+*/
 
     }
 }
