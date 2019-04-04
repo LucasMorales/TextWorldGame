@@ -19,18 +19,22 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         do {
-            System.out.println("You are in the " + current.getName());
+            System.out.println("You are in the " + current.getName() + ".");
             System.out.println("What do you want to do?\t [go to <roomname>] [look] [add room <roomname>] [quit]");
             userResponse = in.nextLine();
 
-            if (userResponse.indexOf("go to") == 0){ // index of in case there's a weirdly named place
-                String roomReq = userResponse.substring(7);
+            if (userResponse.indexOf("go to") == 0) { // indexOf in case there's a weirdly named place
+                String roomReq = userResponse.substring(6);
                 if (current.getNeighbor(roomReq) != null) current = g.getNode(roomReq);
+
             } else if (userResponse.indexOf("look") == 0) {
-                System.out.println(current.getNeighborNames());
+                System.out.println("Your options are: " + current.getNeighborNames() + "\n");
+
             } else if (userResponse.indexOf("add room") == 0) {
                 g.addNode(userResponse);
                 g.addDirectedEdge(current.getName(), userResponse);
+                System.out.println(userResponse + " has been added as a room.\n");
+
             } else {
                 System.out.println("What do you want to do?\t [go to <roomname>] [look] [add room <roomname>] [quit]");
             }
