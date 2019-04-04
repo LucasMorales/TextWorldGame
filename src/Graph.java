@@ -6,10 +6,11 @@ public class Graph {
     private List<Node> nodes;
 
     public Graph() {
-
+        nodes = new ArrayList<Node>();
     }
 
     public void addNode(String name) {
+        nodes.add(new Node(name));
     }
 
     public void addDirectedEdge(String node1, String node2) {
@@ -27,6 +28,9 @@ public class Graph {
     }
 
     public Node getNode(String name) {
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes.get(i).getName() == name) return nodes.get(i);
+        }
         return null;
     }
 
