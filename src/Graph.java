@@ -23,33 +23,34 @@ public class Graph {
     public void addUndirectedEdge(String node1, String node2) {
         Node n1 = getNode(node1);
         Node n2 = getNode(node2);
+        //System.out.println("Adding neighbors...");
         n1.addNeighbor(n2);
         n2.addNeighbor(n1);
-
     }
 
     public Node getNode(String name) {
         return nodes.get(name); // HashMap automatically returns null if it does not exist
     }
 
-
     public class Node {
         private String name;
         private HashMap<String, Node> neighbors;
 
         private Node(String name) {
-            neighbors = new HashMap<String, Node>();
+            neighbors = new HashMap<>();
             this.name = name;
         }
 
         private void addNeighbor(Node n) {
-            neighbors.put(name, n);
+            //System.out.println("Adding neighbor " + n.getName() + "  to " + this.getName());
+            neighbors.put(n.getName(), n);
         }
 
         public String getNeighborNames() {
             String output = "";
             for (String name : neighbors.keySet()) {
                 output += neighbors.get(name).getName();
+                //System.out.println(neighbors.get(name).getName());
                 output += "\t";
             }
             return output;
@@ -63,8 +64,9 @@ public class Graph {
             return name;
         }
 
-        public boolean hasNeighbor(String roomReq) {
-            return (getNeighbor(roomReq) != null);
+        public boolean hasNeighbor(String room) {
+            if (getNeighbor(room) == null) return false;
+            return true;
         }
     }
 

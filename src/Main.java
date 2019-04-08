@@ -6,11 +6,15 @@ public class Main {
     public static void main(String[] args) {
         Graph g = new Graph();
         g.addNode("hall");
+        g.addNode("bedroom");
+        g.addNode("bathroom");
         g.addNode("closet");
         g.addNode("dungeon");
 
         g.addDirectedEdge("hall", "dungeon");
-        g.addUndirectedEdge("hall", "closet");
+        g.addUndirectedEdge("hall", "bedroom");
+        g.addUndirectedEdge("bedroom", "closet");
+        g.addDirectedEdge("bedroom", "bathroom");
 
         Graph.Node current = g.getNode("hall");
 
@@ -28,11 +32,11 @@ public class Main {
 
             if (userResponse.indexOf("go to") == 0) { // indexOf in case there's a weirdly named place
                 String roomReq = userResponse.substring(6);
-
-                if (current.hasNeighbor(roomReq))
+                if (current.hasNeighbor(roomReq)) {
                     current = g.getNode(roomReq);
-                else
+                } else {
                     System.out.println("this room does not exist: " + roomReq);
+                }
 
             } else if (userResponse.indexOf("look") == 0) {
                 System.out.println("Your room options are: " + current.getNeighborNames() + "\n");
