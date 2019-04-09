@@ -1,22 +1,21 @@
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Graph g = new Graph();
-        g.addNode("hall", "a long, dank hallway");
-        g.addNode("bedroom", "where ya go to sleep");
-        g.addNode("bathroom", "where ya go to poo");
-        g.addNode("closet", "where ya clothes are");
-        g.addNode("dungeon", "scary bad bad");
+        g.addRoom("hall", "a long, dank hallway");
+        g.addRoom("bedroom", "where ya go to sleep");
+        g.addRoom("bathroom", "where ya go to poo");
+        g.addRoom("closet", "where ya clothes are");
+        g.addRoom("dungeon", "scary bad bad");
 
         g.addDirectedEdge("hall", "dungeon");
         g.addUndirectedEdge("hall", "bedroom");
         g.addUndirectedEdge("bedroom", "closet");
         g.addDirectedEdge("bedroom", "bathroom");
 
-        Graph.Node current = g.getNode("hall");
+        Graph.Room current = g.getRoom("hall");
 
         // game loop code
 
@@ -33,7 +32,7 @@ public class Main {
             if (userResponse.indexOf("go to") == 0) { // indexOf in case there's a weirdly named place
                 String roomReq = userResponse.substring(6);
                 if (current.hasNeighbor(roomReq)) {
-                    current = g.getNode(roomReq);
+                    current = g.getRoom(roomReq);
                 } else {
                     System.out.println("this room does not exist: " + roomReq);
                 }
@@ -44,7 +43,7 @@ public class Main {
 
             } else if (userResponse.indexOf("add room") == 0) {
                 String newRoomReq = userResponse.substring(9);
-                g.addNode(newRoomReq, "no description written");
+                g.addRoom(newRoomReq, "[ no description written ]");
                 g.addUndirectedEdge(current.getName(), newRoomReq);
                 System.out.println(newRoomReq + " has been added as a room.\n");
 

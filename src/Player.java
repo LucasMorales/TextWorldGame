@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private String description;
-    private Graph.Node currentRoom;
+    private Graph.Room currentRoom;
 
     public Player(String name, String description) {
         this.name = name;
@@ -18,10 +18,10 @@ public class Player {
         return null;
     }
     public void displayInventory() {}
-    public Graph.Node getCurrentRoom() {
+    public Graph.Room getCurrentRoom() {
         return null;
     }
-    private void setCurrentRoom(Graph.Node newRoom) {
+    private void setCurrentRoom(Graph.Room newRoom) {
         this.currentRoom = newRoom;
     }
 
