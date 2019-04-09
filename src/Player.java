@@ -19,7 +19,7 @@ public class Player {
     }
     public void displayInventory() {}
     public Graph.Room getCurrentRoom() {
-        return null;
+        return currentRoom;
     }
     public void setCurrentRoom(Graph.Room newRoom) {
         this.currentRoom = newRoom;

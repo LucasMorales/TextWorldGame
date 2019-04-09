@@ -48,7 +48,7 @@ public class Main {
                 g.addRoom(newRoomReq, "[ no description written ]");
                 g.addUndirectedEdge(p.getCurrentRoom().getName(), newRoomReq);
                 System.out.println(newRoomReq + " has been added as a room.\n");
-
+                // this seems like a weird command, also ADD a checker to see if a room with that name exists already
             } else {
                 System.out.println("What do you want to do?\t [go to <roomname>] [look] [add room <roomname>] [quit]");
             }
