@@ -10,8 +10,9 @@ public class Graph {
         nodes = new HashMap<>();
     }
 
-    public void addNode(String name) {
+    public void addNode(String name, String description) {
         nodes.put(name, new Node(name));
+        nodes.get(name).setDescription(description);
     }
 
     public void addDirectedEdge(String node1, String node2) {
@@ -23,7 +24,6 @@ public class Graph {
     public void addUndirectedEdge(String node1, String node2) {
         Node n1 = getNode(node1);
         Node n2 = getNode(node2);
-        //System.out.println("Adding neighbors...");
         n1.addNeighbor(n2);
         n2.addNeighbor(n1);
     }
@@ -35,6 +35,7 @@ public class Graph {
     public class Node {
         private String name;
         private HashMap<String, Node> neighbors;
+        private String description;
 
         private Node(String name) {
             neighbors = new HashMap<>();
@@ -42,15 +43,21 @@ public class Graph {
         }
 
         private void addNeighbor(Node n) {
-            //System.out.println("Adding neighbor " + n.getName() + "  to " + this.getName());
             neighbors.put(n.getName(), n);
+        }
+
+        private void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
         }
 
         public String getNeighborNames() {
             String output = "";
             for (String name : neighbors.keySet()) {
                 output += neighbors.get(name).getName();
-                //System.out.println(neighbors.get(name).getName());
                 output += "\t";
             }
             return output;
@@ -68,6 +75,8 @@ public class Graph {
             if (getNeighbor(room) == null) return false;
             return true;
         }
+
+
     }
 
 }

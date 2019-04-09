@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Graph g = new Graph();
-        g.addNode("hall");
-        g.addNode("bedroom");
-        g.addNode("bathroom");
-        g.addNode("closet");
-        g.addNode("dungeon");
+        g.addNode("hall", "a long, dank hallway");
+        g.addNode("bedroom", "where ya go to sleep");
+        g.addNode("bathroom", "where ya go to poo");
+        g.addNode("closet", "where ya clothes are");
+        g.addNode("dungeon", "scary bad bad");
 
         g.addDirectedEdge("hall", "dungeon");
         g.addUndirectedEdge("hall", "bedroom");
@@ -39,11 +39,12 @@ public class Main {
                 }
 
             } else if (userResponse.indexOf("look") == 0) {
+                System.out.println("Your current room is " + current.getDescription());
                 System.out.println("Your room options are: " + current.getNeighborNames() + "\n");
 
             } else if (userResponse.indexOf("add room") == 0) {
                 String newRoomReq = userResponse.substring(9);
-                g.addNode(newRoomReq);
+                g.addNode(newRoomReq, "no description written");
                 g.addUndirectedEdge(current.getName(), newRoomReq);
                 System.out.println(newRoomReq + " has been added as a room.\n");
 
