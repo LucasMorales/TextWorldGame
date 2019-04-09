@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Graph {
@@ -34,6 +35,7 @@ public class Graph {
         private String name;
         private HashMap<String, Room> neighbors;
         private String description;
+        private ArrayList<Item> items;
 
         private Room(String name) {
             neighbors = new HashMap<>();
@@ -42,6 +44,28 @@ public class Graph {
 
         private void addNeighbor(Room r) {
             neighbors.put(r.getName(), r);
+        }
+
+        public ArrayList<Item> getItems() {
+            return items;
+        }
+
+        public void displayItems() {
+            System.out.print("The items in this room are: ");
+            for (int i = 0; i < items.size(); i++) {
+                System.out.print(items.get(i) + "\t");
+            }
+            System.out.println();
+        }
+
+        private void addItem(Item item) {
+            items.add(item);
+        }
+        private Item removeItem(String name) {
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getName().equals(name)) return items.remove(i);
+            }
+            return null;
         }
 
         private void setDescription(String description) {
@@ -73,8 +97,6 @@ public class Graph {
             if (getNeighbor(room) == null) return false;
             return true;
         }
-
-
     }
 
 }
