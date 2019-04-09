@@ -58,10 +58,10 @@ public class Graph {
             System.out.println();
         }
 
-        private void addItem(Item item) {
+        public void addItem(Item item) {
             items.add(item);
         }
-        private Item removeItem(String name) {
+        public Item removeItem(String name) {
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getName().equals(name)) return items.remove(i);
             }

@@ -15,11 +15,14 @@ public class Main {
         g.addUndirectedEdge("bedroom", "closet");
         g.addDirectedEdge("bedroom", "bathroom");
 
+        g.getRoom("bedroom").addItem(new Item("hat","it looks nice"));
+        g.getRoom("bedroom").addItem(new Item("cane","for support and whacking others"));
+        g.getRoom("dungeon").addItem(new Item("chains","heavy, but useful"));
+
         Player p = new Player("Lucas", "the fellowiest fellow");
         p.setCurrentRoom(g.getRoom("hall"));
-        Graph.Room playerLocation = g.getRoom("hall");
 
-        // game loop code
+        // game loop code below
 
         String userResponse = "";
         Scanner in = new Scanner(System.in);

@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player {
     private String name;
     private String description;
     private Graph.Room currentRoom;
+    private HashMap<String, Item> inventory;
 
     public Player(String name, String description) {
         this.name = name;
@@ -17,7 +19,12 @@ public class Player {
     public ArrayList<Item> getItems() {
         return null;
     }
-    public void displayInventory() {}
+    public void displayInventory() {
+        for (String s : inventory.keySet()) {
+            System.out.print("You have: " + "\n" + inventory.get(s) + "\t");
+        }
+        System.out.println();
+    }
     public Graph.Room getCurrentRoom() {
         return currentRoom;
     }
