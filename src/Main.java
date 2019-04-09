@@ -15,7 +15,9 @@ public class Main {
         g.addUndirectedEdge("bedroom", "closet");
         g.addDirectedEdge("bedroom", "bathroom");
 
-        Graph.Room current = g.getRoom("hall");
+        Player p = new Player("Lucas", "the fellowiest fellow");
+        p.setCurrentRoom(g.getRoom("hall"));
+        Graph.Room playerLocation = g.getRoom("hall");
 
         // game loop code
 
@@ -23,7 +25,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         do {
-            System.out.println("You are in the " + current.getName() + ".");
+            System.out.println("You are in the " + p.getCurrentRoom().getName() + ".");
             System.out.println("What do you want to do? Your options are:");
             System.out.println("[go to <roomname>]\t[look]\t[add room <roomname>]\t[quit]");
             userResponse = in.nextLine();
@@ -31,20 +33,20 @@ public class Main {
 
             if (userResponse.indexOf("go to") == 0) { // indexOf in case there's a weirdly named place
                 String roomReq = userResponse.substring(6);
-                if (current.hasNeighbor(roomReq)) {
-                    current = g.getRoom(roomReq);
+                if (p.getCurrentRoom().hasNeighbor(roomReq)) {
+                    p.setCurrentRoom(g.getRoom(roomReq));
                 } else {
                     System.out.println("this room does not exist: " + roomReq);
                 }
 
             } else if (userResponse.indexOf("look") == 0) {
-                System.out.println("Your current room is " + current.getDescription());
-                System.out.println("Your room options are: " + current.getNeighborNames() + "\n");
+                System.out.println("Your current room is " + p.getCurrentRoom().getDescription());
+                System.out.println("Your room options are: " + p.getCurrentRoom().getNeighborNames() + "\n");
 
             } else if (userResponse.indexOf("add room") == 0) {
                 String newRoomReq = userResponse.substring(9);
                 g.addRoom(newRoomReq, "[ no description written ]");
-                g.addUndirectedEdge(current.getName(), newRoomReq);
+                g.addUndirectedEdge(p.getCurrentRoom().getName(), newRoomReq);
                 System.out.println(newRoomReq + " has been added as a room.\n");
 
             } else {
