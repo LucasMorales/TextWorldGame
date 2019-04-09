@@ -21,7 +21,7 @@ public class Player {
     public Graph.Room getCurrentRoom() {
         return null;
     }
-    private void setCurrentRoom(Graph.Room newRoom) {
+    public void setCurrentRoom(Graph.Room newRoom) {
         this.currentRoom = newRoom;
     }
 
