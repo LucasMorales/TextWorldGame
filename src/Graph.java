@@ -31,6 +31,7 @@ public class Graph {
         return rooms.get(name); // HashMap automatically returns null if it does not exist
     }
 
+
     public class Room {
         private String name;
         private HashMap<String, Room> neighbors;
@@ -40,6 +41,7 @@ public class Graph {
         private Room(String name) {
             neighbors = new HashMap<>();
             this.name = name;
+            items = new ArrayList<>();
         }
 
         private void addNeighbor(Room r) {
@@ -51,16 +53,21 @@ public class Graph {
         }
 
         public void displayItems() {
-            System.out.print("The items in this room are: ");
-            for (int i = 0; i < items.size(); i++) {
-                System.out.print(items.get(i) + "\t");
+            if (items.size() == 0) {
+                System.out.println("no items in this room");
+            } else {
+                System.out.print("The items in this room are: ");
+                for (int i = 0; i < items.size(); i++) {
+                    System.out.print(items.get(i).getName() + "\t");
+                }
+                System.out.println();
             }
-            System.out.println();
         }
 
         public void addItem(Item item) {
             items.add(item);
         }
+
         public Item removeItem(String name) {
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getName().equals(name)) return items.remove(i);
@@ -96,6 +103,13 @@ public class Graph {
         public boolean hasNeighbor(String room) {
             if (getNeighbor(room) == null) return false;
             return true;
+        }
+
+        public boolean hasItem(String itemReq) {
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getName().equals(itemReq)) return true;
+            }
+            return false;
         }
     }
 
