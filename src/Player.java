@@ -25,7 +25,7 @@ public class Player {
     }
     public void displayInventory() {
         for (String s : inventory.keySet()) {
-            System.out.print("You have: " + "\n" + inventory.get(s) + "\t");
+            System.out.print("You have: " + "\n" + inventory.get(s).getName() + "\t");
         }
         System.out.println();
     }

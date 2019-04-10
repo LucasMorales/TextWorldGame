@@ -15,9 +15,9 @@ public class Main {
         g.addUndirectedEdge("bedroom", "closet");
         g.addDirectedEdge("bedroom", "bathroom");
 
-        g.getRoom("bedroom").addItem(new Item("hat","it looks nice"));
-        g.getRoom("bedroom").addItem(new Item("cane","for support and whacking others"));
-        g.getRoom("dungeon").addItem(new Item("chains","heavy, but useful"));
+        g.getRoom("bedroom").addItem(new Item("hat", "it looks nice"));
+        g.getRoom("bedroom").addItem(new Item("cane", "for support and whacking others"));
+        g.getRoom("dungeon").addItem(new Item("chains", "heavy, but useful"));
 
         Player p = new Player("Lucas", "the fellowiest fellow");
         p.setCurrentRoom(g.getRoom("hall"));
@@ -47,7 +47,7 @@ public class Main {
                 p.getCurrentRoom().displayItems();
                 System.out.println("Your room options are: " + p.getCurrentRoom().getNeighborNames() + "\n");
 
-            }else if (userResponse.indexOf("pick up") == 0) {
+            } else if (userResponse.indexOf("pick up") == 0) {
                 String itemReq = userResponse.substring(8);
                 System.out.println(itemReq);
                 if (p.getCurrentRoom().hasItem(itemReq)) {
@@ -56,6 +56,7 @@ public class Main {
                 } else {
                     System.out.println("item does not exist here");
                 }
+                p.displayInventory();
             } else if (userResponse.indexOf("add room") == 0) {
                 String newRoomReq = userResponse.substring(9);
                 g.addRoom(newRoomReq, "[ no description written ]");
