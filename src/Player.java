@@ -10,13 +10,17 @@ public class Player {
     public Player(String name, String description) {
         this.name = name;
         this.description = description;
+        inventory = new HashMap<>();
     }
 
-    private void addItem(Item item) {}
-    private Item removeItem(String name) {
+    public void addItemToInventory(Item item) {
+        inventory.put(item.getName(), item);
+    }
+    public Item removeItemFromInventory(String name) {
+        if (inventory.containsKey(name)) return inventory.remove(name);
         return null;
     }
-    public ArrayList<Item> getItems() {
+    public ArrayList<Item> getItemsInInventory() {
         return null;
     }
     public void displayInventory() {
