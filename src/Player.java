@@ -26,9 +26,6 @@ public class Player {
         return false;
     }
 
-    public ArrayList<Item> getItemsInInventory() {
-        return null;
-    }
     public void displayInventory() {
         for (String s : inventory.keySet()) {
             System.out.print("You have: " + "\n" + inventory.get(s).getName() + "\t");
