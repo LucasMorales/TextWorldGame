@@ -20,6 +20,12 @@ public class Player {
         if (inventory.containsKey(name)) return inventory.remove(name);
         return null;
     }
+
+    public boolean hasItem(String name) {
+        if (inventory.containsKey(name)) return true;
+        return false;
+    }
+
     public ArrayList<Item> getItemsInInventory() {
         return null;
     }

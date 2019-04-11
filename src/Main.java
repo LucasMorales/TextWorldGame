@@ -30,7 +30,7 @@ public class Main {
         do {
             System.out.println("You are in the " + p.getCurrentRoom().getName() + ".");
             System.out.println("What do you want to do? Your options are:");
-            System.out.println("[go to <roomName>]\t[look]\t[pick up <item>]\t[add room <roomName>]\t[quit]");
+            System.out.println("[go to <roomName>]\t[look]\t[pick up <item>]\t[drop <item>]\t[add room <roomName>]\t[quit]");
             userResponse = in.nextLine();
             System.out.println();
 
@@ -49,7 +49,6 @@ public class Main {
 
             } else if (userResponse.indexOf("pick up") == 0) {
                 String itemReq = userResponse.substring(8);
-                System.out.println(itemReq);
                 if (p.getCurrentRoom().hasItem(itemReq)) {
                     Item pickedUp = p.getCurrentRoom().removeItem(itemReq);
                     p.addItemToInventory(pickedUp);
@@ -57,6 +56,14 @@ public class Main {
                     System.out.println("item does not exist here");
                 }
                 p.displayInventory();
+            } else if (userResponse.indexOf("drop") == 0) {
+                String itemDrop = userResponse.substring(5);
+                if (p.hasItem(itemDrop)) {
+                    Item movedItem = p.removeItemFromInventory(itemDrop);
+                    p.getCurrentRoom().addItem(movedItem);
+                } else {
+                    System.out.println("item not in inventory");
+                }
             } else if (userResponse.indexOf("add room") == 0) {
                 String newRoomReq = userResponse.substring(9);
                 g.addRoom(newRoomReq, "[ no description written ]");
