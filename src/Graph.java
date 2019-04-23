@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class Graph {
     private HashMap<String, Room> rooms;
+    private ArrayList<Creature> creatures;
 
     public Graph() {
         rooms = new HashMap<>();
@@ -25,6 +26,17 @@ public class Graph {
         getRoom("bedroom").addItem(new Item("hat", "it looks nice"));
         getRoom("bedroom").addItem(new Item("cane", "for support and whacking others"));
         getRoom("dungeon").addItem(new Item("chains", "heavy, but useful"));
+
+        getRoom("dungeon").addCreature(new Chicken("cluckers", "quite the clucker", getRoom("dungeon")));
+        getRoom("dungeon").addCreature(new Chicken("paco", "likes tacos", getRoom("dungeon")));
+        getRoom("closet").addCreature(new Wumpus("whammy", "carries a hammer", getRoom("closet")));
+
+    }
+
+    public void updateAllCreatures() {
+        for (Creature c : creatures) {
+            c.act();
+        }
     }
 
     public void addRoom(String name, String description) {
@@ -54,6 +66,7 @@ public class Graph {
         private HashMap<String, Room> neighbors;
         private String description;
         private ArrayList<Item> items;
+        private ArrayList<Creature> creatures;
 
         private Room(String name) {
             neighbors = new HashMap<>();
@@ -63,6 +76,10 @@ public class Graph {
 
         private void addNeighbor(Room r) {
             neighbors.put(r.getName(), r);
+        }
+
+        private void addCreature(Creature c) {
+            creatures.add(c);
         }
 
         public ArrayList<Item> getItems() {
@@ -119,6 +136,11 @@ public class Graph {
             int ran = (int)(Math.random()*listOfKeys.size());
             String ranName = listOfKeys.get(ran);
             return neighbors.get(ranName);
+        }
+
+        public boolean hasPlayer() {
+            return false;
+            // unsure how to do this
         }
 
         public String getName() {
