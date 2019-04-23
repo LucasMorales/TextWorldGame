@@ -8,7 +8,6 @@ public class Main {
         Player p = new Player("Lucas", "a cool dude");
         p.setCurrentRoom(g.getRoom("hall"));
 
-
         // game loop code below
 
         String userResponse = "";
