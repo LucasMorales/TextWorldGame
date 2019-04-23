@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Graph {
     private HashMap<String, Room> rooms;
@@ -24,7 +25,6 @@ public class Graph {
         getRoom("bedroom").addItem(new Item("hat", "it looks nice"));
         getRoom("bedroom").addItem(new Item("cane", "for support and whacking others"));
         getRoom("dungeon").addItem(new Item("chains", "heavy, but useful"));
-
     }
 
     public void addRoom(String name, String description) {
@@ -48,7 +48,6 @@ public class Graph {
     public Room getRoom(String name) {
         return rooms.get(name); // HashMap automatically returns null if it does not exist
     }
-
 
     public class Room {
         private String name;
@@ -112,6 +111,14 @@ public class Graph {
 
         public Room getNeighbor(String name) {
             return neighbors.get(name);
+        }
+
+        public Room getRandomNeighbor() {
+            Set<String> keySet = neighbors.keySet();
+            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
+            int ran = (int)(Math.random()*listOfKeys.size());
+            String ranName = listOfKeys.get(ran);
+            return neighbors.get(ranName);
         }
 
         public String getName() {
