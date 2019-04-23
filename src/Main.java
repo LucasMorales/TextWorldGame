@@ -4,23 +4,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Graph g = new Graph();
-        g.addRoom("hall", "a long, dank hallway");
-        g.addRoom("bedroom", "where ya go to sleep");
-        g.addRoom("bathroom", "where ya go to poo");
-        g.addRoom("closet", "where ya clothes are");
-        g.addRoom("dungeon", "scary bad bad");
-
-        g.addDirectedEdge("hall", "dungeon");
-        g.addUndirectedEdge("hall", "bedroom");
-        g.addUndirectedEdge("bedroom", "closet");
-        g.addDirectedEdge("bedroom", "bathroom");
-
-        g.getRoom("bedroom").addItem(new Item("hat", "it looks nice"));
-        g.getRoom("bedroom").addItem(new Item("cane", "for support and whacking others"));
-        g.getRoom("dungeon").addItem(new Item("chains", "heavy, but useful"));
-
-        Player p = new Player("Lucas", "the fellowiest fellow");
+        g.init();
+        Player p = new Player("Lucas", "a cool dude");
         p.setCurrentRoom(g.getRoom("hall"));
+
 
         // game loop code below
 

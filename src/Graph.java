@@ -9,6 +9,24 @@ public class Graph {
         rooms = new HashMap<>();
     }
 
+    public void init() {
+        addRoom("hall", "a long, dank hallway");
+        addRoom("bedroom", "where ya go to sleep");
+        addRoom("bathroom", "where ya go to poo");
+        addRoom("closet", "where ya clothes are");
+        addRoom("dungeon", "scary bad bad");
+
+        addDirectedEdge("hall", "dungeon");
+        addUndirectedEdge("hall", "bedroom");
+        addUndirectedEdge("bedroom", "closet");
+        addDirectedEdge("bedroom", "bathroom");
+
+        getRoom("bedroom").addItem(new Item("hat", "it looks nice"));
+        getRoom("bedroom").addItem(new Item("cane", "for support and whacking others"));
+        getRoom("dungeon").addItem(new Item("chains", "heavy, but useful"));
+
+    }
+
     public void addRoom(String name, String description) {
         rooms.put(name, new Room(name));
         rooms.get(name).setDescription(description);
