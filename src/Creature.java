@@ -3,7 +3,9 @@ public abstract class Creature {
     String name, description;
     Graph.Room currentRoom;
 
-    public Creature(String name, String description) {}
+    public Creature(String name, String description, Graph.Room startingRoom) {
+        currentRoom = startingRoom;
+    }
 
     public abstract void act();
 
