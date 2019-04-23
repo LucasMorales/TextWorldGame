@@ -1,7 +1,7 @@
 public class Chicken extends Creature {
 
-    public Chicken(String name, String description) {
-        super(name, description);
+    public Chicken(String name, String description, Graph.Room startingRoom) {
+        super(name, description, startingRoom);
     }
 
     @Override
